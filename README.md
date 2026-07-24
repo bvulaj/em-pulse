@@ -75,11 +75,7 @@ During setup, you'll configure:
 
 The system will guide you through configuring these during the setup process.
 
-## Support
 
-Created by Brandon Vulaj, Engineering Manager, Console - Kessel Team at Red Hat.
-
-This is a community contribution - feel free to modify, extend, and share improvements.
 
 ---
 

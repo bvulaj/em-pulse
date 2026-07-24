@@ -147,17 +147,77 @@ Update the SKILL.md file with the user's specific:
 - Email contacts
 - Any other organizational specifics
 
-## Step 5: Test the System
+## Step 5: Validate Each Component
+
+**Test each data source individually before running full briefing:**
+
+### JIRA Validation
+```bash
+# Test JIRA connectivity with their configuration
+mcp__atlassian__searchJiraIssuesUsingJql with their Cloud ID and team filter
+```
+**Expected:** Should return team issues without errors
+**If it fails:** See troubleshooting section below
+
+### Slack Validation  
+```bash
+# Test Slack channel access
+mcp__slack__search_messages with one of their configured channels
+```
+**Expected:** Should return recent messages from the channel
+**If it fails:** Check MCP permissions and channel names
+
+### Calendar Validation
+```bash
+# Test calendar access
+gog calendar events --max 3
+```
+**Expected:** Should show upcoming calendar events
+**If it fails:** Run `gog auth login` to re-authenticate
+
+### Email Validation
+```bash
+# Test email search
+gog mail search "from:[manager-email]" --max 3
+```
+**Expected:** Should find recent emails from manager
+**If it fails:** Verify email address format and permissions
+
+## Step 6: Full System Test
 
 1. Update the timestamp in memory/reference_briefing_timestamp.md to current time
 2. Run a test briefing: respond to "brief me" 
-3. Verify all data sources are working:
-   - Calendar events appear
-   - JIRA issues are found
-   - Slack channels are monitored  
-   - Email scanning works
+3. Verify comprehensive briefing with all data sources integrated
 
-## Step 6: Explain Usage to User
+## Step 7: Success Confirmation
+
+**Tell the user their setup is complete and summarize what was configured:**
+
+"✅ **em-pulse is successfully configured!** Here's what I set up for you:
+
+**JIRA Integration:**
+- Cloud ID: [their-actual-cloud-id]  
+- Team Filter: [their-actual-jql-query]
+- Monitoring: High priority items, blockers, recent completions
+
+**Slack Monitoring:**
+- Management Channels: [list-actual-channels]
+- Team Channels: [list-actual-channels]
+- Working Groups: [list-actual-channels]
+- Total: [N] channels being monitored
+
+**Email Alerts:**
+- Key Contacts: [manager-name], [skip-level-name], [other-contacts]
+- Patterns: 'action required', leadership communications
+
+**Team Context:**
+- Direct Reports: [list-actual-team-members]
+- Organizational Structure: Configured with reporting relationships
+- Strategic Priorities: Template ready for your initiatives
+
+**Ready to use!** Say 'brief me' anytime for your daily intelligence briefing."
+
+## Step 8: Explain Usage to User
 
 Tell them:
 - **"Brief me"** triggers the daily briefing
@@ -168,11 +228,57 @@ Tell them:
 
 ## Troubleshooting
 
-**Common Issues:**
-- JIRA connectivity: Verify Cloud ID and team filter syntax
-- Slack access: Ensure MCP has proper permissions  
-- Memory errors: Check file permissions and directory structure
-- Missing data: Verify tool installations (gog, MCP servers)
+### JIRA Issues
+**"Invalid Cloud ID" or "Authentication failed":**
+- Verify Cloud ID format: `12345678-1234-1234-1234-123456789abc`
+- Check MCP server configuration and authentication
+- Confirm user has access to specified JIRA instance
+
+**"No issues found" or "JQL error":**
+- Test basic query first: `project = "PROJECTNAME"`
+- Verify team field access: try `customfield_10001 = "uuid"`
+- Fall back to assignee filter: `assignee in (user1, user2)`
+- Check issue permissions in JIRA
+
+### Slack Issues  
+**"Channel not found" or "Access denied":**
+- Verify exact channel names (case-sensitive)
+- Check MCP server has workspace permissions
+- Test with public channels first, then private
+- Confirm user is member of private channels
+
+**"No messages found":**
+- Try broader search terms initially
+- Check date ranges (messages may be older than search window)
+- Verify channel has recent activity
+
+### Calendar Issues
+**"No events found" or "Authentication error":**
+- Re-run authentication: `gog auth login`
+- Check account permissions for calendar access
+- Verify correct Google account is authenticated
+- Test with simple command: `gog calendar events --max 1`
+
+### Email Issues
+**"No emails found" or "Search failed":**
+- Verify email addresses are exact (check spelling)
+- Test broader search first: `gog mail search "action required"`
+- Check Gmail API permissions and authentication
+- Confirm target emails exist in accessible mailbox
+
+### Memory System Issues
+**"File not found" or "Permission denied":**
+- Check directory creation: `ls -la .claude/projects/`
+- Verify file permissions: `chmod 644 memory/*.md`
+- Ensure memory directory structure is complete
+- Re-run memory file creation commands
+
+### General Debugging
+**"Skill not found" or "Command not recognized":**
+- Verify skill file location: `.claude/skills/daily-briefing/SKILL.md`
+- Check skill file syntax and frontmatter
+- Restart Claude session if needed
+- Confirm all required tools are installed
 
 ## Success Criteria
 
