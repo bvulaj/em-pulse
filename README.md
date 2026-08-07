@@ -9,7 +9,7 @@ An AI-powered daily briefing system that integrates calendar, JIRA, Slack, and e
 ## Quick Start
 
 1. **Install Required Tools:**
-  - **gog** (Google CLI): [https://github.com/sashabaranov/gogcli](https://github.com/sashabaranov/gogcli)
+  - **gog** (Google CLI): [https://github.com/openclaw/gogcli](https://github.com/openclaw/gogcli)
   - **Atlassian MCP**: [https://github.com/atlassian/atlassian-mcp-server](https://github.com/atlassian/atlassian-mcp-server)  
   - **Slack MCP**: [https://github.com/redhat-community-ai-tools/slack-mcp](https://github.com/redhat-community-ai-tools/slack-mcp)
 2. **Hand Off to Claude:**
