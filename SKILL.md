@@ -104,7 +104,15 @@ component = "[YOUR_TEAM_COMPONENT]"
 **📋 Daily Focus:** [Generated based on calendar/context and strategic priorities]
 
 ## Key Meeting Prep
-[Context for each meeting from JIRA/Slack/recent activity with specific prep recommendations]
+
+**[Meeting Name] ([Time]):**
+- **Prior Context:** [Key points from most recent Gemini notes, if available]
+- **Today's Agenda:** [Current planned topics from today's agenda attachment]
+- **Recent Activity:** [Relevant JIRA updates, Slack discussions related to meeting topics]
+- **Prep Recommendations:** [Specific action items, decisions needed, or topics to surface]
+- **Strategic Context:** [How this meeting connects to broader initiatives]
+
+*[Repeat for each significant meeting, prioritizing 1:1s and strategic sessions]*
 
 ## Strategic Intelligence
 [Executive-level insights connecting today's activities to broader goals and positioning]
@@ -139,10 +147,47 @@ component = "[YOUR_TEAM_COMPONENT]"
 - **Scope:** Only track items that are the EM's direct responsibility
 
 ## Meeting Prep Logic
+
+**Enhanced Context Gathering:**
 - Search JIRA for relevant tickets involving meeting context
 - Check recent Slack conversations related to meeting topics
-- Include context for 1:1s with direct reports
+- **Gemini Notes Integration:** Extract context from calendar meeting attachments
 - Flag any blockers or urgent items for discussion
+
+**Gemini Notes & Agenda Processing:**
+
+For each meeting on today's calendar:
+
+1. **Extract attachments from calendar events:**
+   ```bash
+   gog calendar events --json --today
+   ```
+
+2. **Identify relevant attachments:**
+   - Look for attachments with titles containing "Notes by Gemini", "Notes -", or "Agenda"
+   - Extract `fileId` from attachment metadata
+
+3. **Read meeting context:**
+   ```bash
+   gog docs read <fileId>
+   ```
+
+4. **Apply recency filter:**
+   - **Current day agendas**: Use full content for today's planned topics
+   - **Historical notes**: Only surface context from the single most recent prior session
+   - **Ignore**: Older stale historical notes covering topics already resolved
+
+**Context Prioritization:**
+- **1:1 meetings**: Always check for Gemini notes - critical for direct report context
+- **Team meetings**: Look for notes containing action items, decisions, blockers
+- **Strategic meetings**: Focus on outcomes, next steps, and dependencies
+- **Cross-functional meetings**: Extract stakeholder perspectives and alignment issues
+
+**Meeting-Specific Prep Recommendations:**
+- **New meetings (no prior notes)**: Provide general context from recent JIRA/Slack activity
+- **Recurring meetings with notes**: Highlight follow-ups from previous session + today's agenda
+- **1:1s with direct reports**: Surface their recent work, blockers, and career development items
+- **Leadership meetings**: Connect to strategic priorities and organizational context
 
 ## Clock Emoji Mapping (Local Time)
 Round to nearest half-hour:

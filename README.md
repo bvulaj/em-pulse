@@ -16,9 +16,13 @@ An AI-powered daily briefing system that integrates calendar, JIRA, Slack, and e
   - Give your Claude assistant the `SETUP.md` file
   - Say: *"Set up my daily briefing assistant using this guide"*
   - Follow the customization prompts
-3. **Test:**
+3. **Enable Gemini Notes** (Optional but Recommended):
+  - Enable Gemini note-taking in your Google Calendar settings
+  - Attach notes/agendas to recurring meetings for enhanced context
+4. **Test:**
   - Say "brief me" to get your first briefing
   - Verify all data sources are working
+  - Check meeting prep quality with and without Gemini notes
 
 
 
@@ -26,10 +30,17 @@ An AI-powered daily briefing system that integrates calendar, JIRA, Slack, and e
 
 **Daily Morning Briefing:**
 
-- Your agenda with meeting prep context
+- Your agenda with enhanced meeting prep context
 - Recent activity across JIRA/Slack/email since last briefing
-- Key meeting preparation with relevant background
+- **Smart meeting preparation** with Gemini notes integration and agenda parsing
 - Strategic intelligence synthesis connecting daily activities to broader goals
+
+**Enhanced Meeting Intelligence:**
+
+- **Gemini Notes Integration**: Automatically extracts context from Google Calendar meeting notes and agendas
+- **Recency Filtering**: Focuses on current agenda items and most recent session notes, filtering out stale historical context
+- **1:1 Optimization**: Prioritizes direct report context, career development items, and follow-up tracking
+- **Strategic Context**: Connects meeting topics to broader organizational initiatives and priorities
 
 **Persistent Context:**
 
@@ -61,6 +72,8 @@ An AI-powered daily briefing system that integrates calendar, JIRA, Slack, and e
 - **Decision Quality**: Better-informed choices through comprehensive intelligence
 - **Proactive Detection**: Early identification of issues and opportunities
 - **Meeting Efficiency**: Show up prepared with relevant context for every meeting
+- **Enhanced 1:1 Quality**: Automatic context from previous sessions ensures continuity and follow-through
+- **Strategic Continuity**: Connect daily activities to long-term goals through intelligent synthesis
 
 
 
@@ -72,8 +85,20 @@ During setup, you'll configure:
 - **Slack monitoring:** Specific channels for management, team, and working groups  
 - **Email contacts:** Key leadership and stakeholder email addresses
 - **Team context:** Direct reports, organizational structure, and strategic priorities
+- **Google Calendar**: Ensure gog CLI has access to calendar events and attachments
+- **Gemini Notes** (Optional): Enable automatic note-taking for enhanced meeting context
 
 The system will guide you through configuring these during the setup process.
+
+## Advanced Features
+
+**Gemini Notes Integration**: When enabled, the system automatically:
+- Extracts context from previous meeting notes for continuity
+- Parses current-day agendas for meeting preparation
+- Filters out stale historical context to focus on relevant information
+- Prioritizes 1:1 context for direct report management
+
+**Smart Context Filtering**: Uses recency algorithms to surface only the most relevant information, avoiding information overload while maintaining strategic continuity.
 
 
 
