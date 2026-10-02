@@ -1,0 +1,14 @@
+# Allow the daily briefing's read-only calendar and mail queries without a
+# shell approval prompt. The repository's RTK instructions require the `rtk`
+# prefix for shell commands.
+prefix_rule(
+    pattern = ["rtk", "gog", "calendar", "events"],
+    decision = "allow",
+    justification = "Read calendar events for the daily briefing.",
+)
+
+prefix_rule(
+    pattern = ["rtk", "gog", "mail", "search"],
+    decision = "allow",
+    justification = "Search mail for the daily briefing.",
+)
