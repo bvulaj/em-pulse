@@ -24,6 +24,14 @@ An AI-powered daily briefing system that integrates calendar, JIRA, Slack, and e
   - Verify all data sources are working
   - Check meeting prep quality with and without Gemini notes
 
+## Use the briefing skill across agents
+
+The authoritative workflow is [`.agents/skills/daily-briefing/SKILL.md`](.agents/skills/daily-briefing/SKILL.md). Codex and Cursor discover skills there directly. Claude Code discovers project skills under `.claude/skills`, so [its entry](.claude/skills/daily-briefing/SKILL.md) points to the shared workflow instead of copying it. This keeps the instructions in one place and needs no symlinks.
+
+The root [`CLAUDE.md`](CLAUDE.md) imports the shared workflow at session start. That is intentional because this repository exists to provide the daily briefing skill. The root [`SKILL.md`](SKILL.md) is a pointer to the canonical file for compatibility with the setup guide. `.codex/rules/daily-briefing.rules` holds Codex-specific approvals for read-only calendar and email queries; it is runtime configuration, not another skill copy.
+
+Each agent still needs its own Calendar, Gmail, Jira, and Slack integrations configured. In Codex, invoke `$daily-briefing` or ask for a daily briefing.
+
 
 
 ## What You Get

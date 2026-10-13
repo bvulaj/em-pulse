@@ -4,14 +4,9 @@
 
 ## Step 1: Install the Briefing Skill
 
-1. Create the skills directory if it doesn't exist:
-```bash
-mkdir -p .claude/skills/daily-briefing
-```
+This repository already contains the shared skill at `.agents/skills/daily-briefing/`. Codex and Cursor discover it there; Claude Code uses the small project entry under `.claude/skills/daily-briefing/`. When running this guide from this repository, no copy is needed.
 
-2. Copy the provided `SKILL.md` file to `.claude/skills/daily-briefing/SKILL.md`
-
-3. Confirm the skill is available by checking if you can recognize "brief me" requests
+To install the skill in another repository, copy the full `daily-briefing` directory into that repository's `.agents/skills/` directory for Codex and Cursor. For Claude Code, add a `.claude/skills/daily-briefing/SKILL.md` entry that points to the shared instructions. Keep the workflow in one canonical file.
 
 ## Step 2: Set Up Memory System
 
@@ -141,7 +136,7 @@ metadata:
 
 ## Step 4: Customize the Skill
 
-Update the SKILL.md file with the user's specific:
+Update `.agents/skills/daily-briefing/SKILL.md` with the user's specific:
 - JIRA Cloud ID and team filter
 - Slack channel lists  
 - Email contacts
