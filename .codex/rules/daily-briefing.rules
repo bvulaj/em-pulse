@@ -1,14 +1,22 @@
 # Allow the daily briefing's read-only calendar and mail queries without a
-# shell approval prompt. The repository's RTK instructions require the `rtk`
-# prefix for shell commands.
+# shell approval prompt. Both are read-only subcommands; nothing here reaches
+# a write or send path.
+#
+# Note: these match the bare `gog` invocation. If your environment wraps shell
+# commands in a prefix (an output filter, a sandbox runner), add matching rules
+# with that prefix prepended — a prefix_rule matches from the first argument, so
+# a wrapped command will not match these.
+#
+# JIRA and Slack are not covered here because they go through MCP tools rather
+# than the shell, and are approved on that path instead.
 prefix_rule(
-    pattern = ["rtk", "gog", "calendar", "events"],
+    pattern = ["gog", "calendar", "events"],
     decision = "allow",
     justification = "Read calendar events for the daily briefing.",
 )
 
 prefix_rule(
-    pattern = ["rtk", "gog", "mail", "search"],
+    pattern = ["gog", "mail", "search"],
     decision = "allow",
     justification = "Search mail for the daily briefing.",
 )

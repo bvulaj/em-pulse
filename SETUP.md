@@ -29,6 +29,7 @@ Create these memory files if they don't exist:
 
 ## References & Tracking
 - [Briefing Timestamp](reference_briefing_timestamp.md) — tracks last briefing for timeframe calculation
+- [Weekly Obligations](user_weekly_obligations.md) — recurring commitments the briefing surfaces as due
 
 ## Communication & Preferences
 - [Communication Patterns](communication_patterns.md) — key channels, leadership contacts, monitoring preferences
@@ -49,6 +50,39 @@ metadata:
 
 This timestamp is used by the daily-briefing skill to calculate timeframe for data gathering.
 Update this each time a briefing runs.
+```
+
+**memory/user_weekly_obligations.md** — required by the skill's *Recurring Obligations Check*. List commitments the EM owes on a fixed cadence, so the briefing can surface them as due without asking permission:
+```markdown
+---
+name: weekly-obligations
+description: Recurring commitments surfaced as due by the daily briefing
+metadata:
+  type: user
+---
+
+# Recurring Obligations
+
+- **[DAY] [TIME]** — [e.g. weekly status update to management chain]
+- **[CADENCE, with an anchor date]** — [e.g. biweekly accomplishment review, from YYYY-MM-DD]
+```
+Anchor every recurring item to a real date rather than "every other week", which is ambiguous once a cycle is missed.
+
+### Optional: brag capture files
+
+The skill's *Brag Capture* section is opt-in. Skip these two files if you don't want it, and the briefing will simply not surface candidates.
+
+**brag-document.md** — the accomplishment record itself, in [Julia Evans' sense](https://jvns.ca/blog/brag-documents/). Entries carry a **WHAT** and a **HOW**; add scope and impact fields if useful to you. Keep it wherever you actually look at it — a local file is fine and avoids the friction of a cloud doc.
+
+**brag-candidates.md** — the holding file. Candidates land here when observed, and move to the brag document only on explicit approval:
+```markdown
+# Brag Candidates — Holding File
+
+Observed but **not yet approved**. Nothing here is in the brag document.
+
+## Pending
+## Promoted
+## Declined
 ```
 
 ## Step 3: Gather Configuration Information
